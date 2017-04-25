@@ -1,9 +1,14 @@
-# api documentation for  [grunt-bump (v0.8.0)](https://github.com/vojtajina/grunt-bump)  [![npm package](https://img.shields.io/npm/v/npmdoc-grunt-bump.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-grunt-bump) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-grunt-bump.svg)](https://travis-ci.org/npmdoc/node-npmdoc-grunt-bump)
+# npmdoc-grunt-bump
+
+#### basic api documentation for  [grunt-bump (v0.8.0)](https://github.com/vojtajina/grunt-bump)  [![npm package](https://img.shields.io/npm/v/npmdoc-grunt-bump.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-grunt-bump) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-grunt-bump.svg)](https://travis-ci.org/npmdoc/node-npmdoc-grunt-bump)
+
 #### Bump package version
 
-[![NPM](https://nodei.co/npm/grunt-bump.png?downloads=true)](https://www.npmjs.com/package/grunt-bump)
+[![NPM](https://nodei.co/npm/grunt-bump.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/grunt-bump)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-grunt-bump/build/screenCapture.buildApidoc.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmdoc%252Fnode-npmdoc-grunt-bump%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-grunt-bump/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-grunt-bump/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-grunt-bump/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-grunt-bump/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-grunt-bump/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-grunt-bump/build/screenCapture.npmPackageListing.svg)
 
@@ -17,140 +22,107 @@
 
 {
     "author": {
-        "name": "Vojta Jína",
-        "email": "vojta.jina@gmail.com"
+        "name": "Vojta Jína"
     },
     "bugs": {
         "url": "https://github.com/vojtajina/grunt-bump/issues"
     },
     "contributors": [
         {
-            "name": "Vojta Jina",
-            "email": "vojta.jina@gmail.com"
+            "name": "Vojta Jina"
         },
         {
-            "name": "Mathias Paumgarten",
-            "email": "paumgarten@soapcreative.com"
+            "name": "Mathias Paumgarten"
         },
         {
-            "name": "Elfrey Shira",
-            "email": "elfrey.shira@opower.com"
+            "name": "Elfrey Shira"
         },
         {
-            "name": "adam j. sontag",
-            "email": "ajpiano@ajpiano.com"
+            "name": "adam j. sontag"
         },
         {
-            "name": "Jonas Rabbe",
-            "email": "jonas.rabbe@gmail.com"
+            "name": "Jonas Rabbe"
         },
         {
-            "name": "travis4all",
-            "email": "travis4all@diamon.dz"
+            "name": "travis4all"
         },
         {
-            "name": "Jarrett Drouillard",
-            "email": "jarrett@thestyl.us"
+            "name": "Jarrett Drouillard"
         },
         {
-            "name": "Jason Diamond",
-            "email": "jason@diamond.name"
+            "name": "Jason Diamond"
         },
         {
-            "name": "Joe Mills",
-            "email": "mills.joe@gmail.com"
+            "name": "Joe Mills"
         },
         {
-            "name": "Mathias Paumgarten",
-            "email": "mail@mathias-paumgarten.com"
+            "name": "Mathias Paumgarten"
         },
         {
-            "name": "Mayhem",
-            "email": "stepien.nicolas@gmail.com"
+            "name": "Mayhem"
         },
         {
-            "name": "Michael Hellein",
-            "email": "themichaek@gmail.com"
+            "name": "Michael Hellein"
         },
         {
-            "name": "Mike Schechter",
-            "email": "mschechter@2u.com"
+            "name": "Mike Schechter"
         },
         {
-            "name": "Mário Gonçalves",
-            "email": "mario.mc.goncalves@gmail.com"
+            "name": "Mário Gonçalves"
         },
         {
-            "name": "Nikolay Vasilchuk",
-            "email": "Anonym.tsk@gmail.com"
+            "name": "Nikolay Vasilchuk"
         },
         {
-            "name": "Nils Winkler",
-            "email": "nils.winkler@sungard.com"
+            "name": "Nils Winkler"
         },
         {
-            "name": "RobinQu",
-            "email": "robinqu@gmail.com"
+            "name": "RobinQu"
         },
         {
-            "name": "Scott Davis",
-            "email": "stdavis@utah.gov"
+            "name": "Scott Davis"
         },
         {
-            "name": "Snugug",
-            "email": "snugug@gmail.com"
+            "name": "Snugug"
         },
         {
-            "name": "Swen Wenzel",
-            "email": "swenzel@uos.de"
+            "name": "Swen Wenzel"
         },
         {
-            "name": "Tunghsiao Liu",
-            "email": "t@sparanoid.com"
+            "name": "Tunghsiao Liu"
         },
         {
-            "name": "Vishwanath",
-            "email": "vishwanath@tinyowl.co.in"
+            "name": "Vishwanath"
         },
         {
-            "name": "angleman",
-            "email": "angleman@users.noreply.github.com"
+            "name": "angleman"
         },
         {
-            "name": "cattail",
-            "email": "zhongchiyu@gmail.com"
+            "name": "cattail"
         },
         {
-            "name": "Adam Biggs",
-            "email": "adam.biggs@lightmaker.com"
+            "name": "Adam Biggs"
         },
         {
-            "name": "ylesaout",
-            "email": "ylesaout@gmail.com"
+            "name": "ylesaout"
         },
         {
-            "name": "Arnold Daniels",
-            "email": "arnold@jasny.net"
+            "name": "Arnold Daniels"
         },
         {
-            "name": "Braden Kelley",
-            "email": "redbmk@gmail.com"
+            "name": "Braden Kelley"
         },
         {
-            "name": "Christopher Van",
-            "email": "cvan@mozilla.com"
+            "name": "Christopher Van"
         },
         {
-            "name": "Christopher Van",
-            "email": "cvan@users.noreply.github.com"
+            "name": "Christopher Van"
         },
         {
-            "name": "Freddy Knuth",
-            "email": "freddy.knuth@rackspace.com"
+            "name": "Freddy Knuth"
         },
         {
-            "name": "Gavin",
-            "email": "gavin@kodekoan.com"
+            "name": "Gavin"
         }
     ],
     "dependencies": {
@@ -184,12 +156,10 @@
     "main": "tasks/bump.js",
     "maintainers": [
         {
-            "name": "vojtajina",
-            "email": "vojta.jina@gmail.com"
+            "name": "vojtajina"
         },
         {
-            "name": "eddiemonge",
-            "email": "eddie+npm@eddiemonge.com"
+            "name": "eddiemonge"
         }
     ],
     "name": "grunt-bump",
@@ -197,7 +167,6 @@
     "peerDependencies": {
         "grunt": ">=1.0.1"
     },
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git://github.com/vojtajina/grunt-bump.git"
@@ -208,19 +177,10 @@
         "release-patch": "grunt release:patch",
         "test": "grunt nodeunit"
     },
-    "version": "0.8.0"
+    "version": "0.8.0",
+    "bin": {}
 }
 ```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module grunt-bump](#apidoc.module.grunt-bump)
-
-
-
-# <a name="apidoc.module.grunt-bump"></a>[module grunt-bump](#apidoc.module.grunt-bump)
 
 
 
