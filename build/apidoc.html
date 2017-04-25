@@ -61,12 +61,163 @@
 
     <li class="apidocModuleLi"><a href="#apidoc.module.grunt-bump">module grunt-bump</a><ol>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-bump.grunt-bump">
+            function <span class="apidocSignatureSpan"></span>grunt-bump
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.grunt-bump" id="apidoc.module.grunt-bump">module grunt-bump</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-bump.grunt-bump" id="apidoc.element.grunt-bump.grunt-bump">
+        function <span class="apidocSignatureSpan"></span>grunt-bump
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">grunt-bump = function (grunt) {
+
+  var DESC = &#x27;Increment the version, commit, tag and push.&#x27;;
+  grunt.registerTask(&#x27;bump&#x27;, DESC, function(versionType, incOrCommitOnly) {
+    var opts = this.options({
+      bumpVersion: true,
+      commit: true,
+      commitFiles: [&#x27;package.json&#x27;], // &#x27;-a&#x27; for all files
+      commitMessage: &#x27;Release v%VERSION%&#x27;,
+      createTag: true,
+      dryRun: false,
+      files: [&#x27;package.json&#x27;],
+      gitCommitOptions: &#x27;&#x27;,
+      gitDescribeOptions: &#x27;--tags --always --abbrev=1 --dirty=-d&#x27;,
+      globalReplace: false,
+      prereleaseName: false,
+      metadata: &#x27;&#x27;,
+      push: true,
+      pushTo: &#x27;upstream&#x27;,
+      regExp: false,
+      setVersion: false,
+      tagMessage: &#x27;Version %VERSION%&#x27;,
+      tagName: &#x27;v%VERSION%&#x27;,
+      updateConfigs: [], // array of config properties to update (with files)
+      versionType: false
+    });
+
+    if (versionType === &#x27;bump-only&#x27; || versionType === &#x27;commit-only&#x27;) {
+      incOrCommitOnly = versionType;
+      versionType = &#x27;&#x27;;
+    }
+    versionType = versionType || opts.versionType;
+
+    var dryRun = grunt.option(&#x27;dry-run&#x27;) || opts.dryRun;
+
+    var setVersion = grunt.option(&#x27;setversion&#x27;) || opts.setVersion;
+    if (setVersion &#x26;&#x26; !semver.valid(setVersion)) {
+      setVersion = false;
+    }
+
+    var globalVersion; // when bumping multiple files
+    var gitVersion;    // when bumping using `git describe`
+
+    var VERSION_REGEXP = opts.regExp || new RegExp(
+      &#x27;([\&#x27;|\&#x22;]?version[\&#x27;|\&#x22;]?[ ]*:[ ]*[\&#x27;|\&#x22;]?)(\\d+\\.\\d+\\.\\d+(-&#x27; +
+      opts.prereleaseName +
+      &#x27;\\.\\d+)?(-\\d+)?)[\\d||A-a|.|-]*([\&#x27;|\&#x22;]?)&#x27;, &#x27;i&#x27;
+    );
+    if (opts.globalReplace) {
+      VERSION_REGEXP = new RegExp(VERSION_REGEXP.source, &#x27;gi&#x27;);
+    }
+
+    var done = this.async();
+    var queue = [];
+    var next = function() {
+      if (!queue.length) {
+        grunt.config.set(&#x27;bump.version&#x27;, globalVersion);
+        return done();
+      }
+      queue.shift()();
+    };
+    var runIf = function(condition, behavior) {
+      if (condition) {
+        queue.push(behavior);
+      }
+    };
+
+    if (dryRun) {
+      grunt.log.writeln(&#x27;Running grunt-bump in dry mode!&#x27;);
+    }
+
+    if (incOrCommitOnly === &#x27;bump-only&#x27;) {
+      grunt.verbose.writeln(&#x27;Only incrementing the version.&#x27;);
+
+      opts.commit = false;
+      opts.createTag = false;
+      opts.push = false;
+    }
+
+    if (incOrCommitOnly === &#x27;commit-only&#x27;) {
+      grunt.verbose.writeln(&#x27;Only committing/tagging/pushing.&#x27;);
+
+      opts.bumpVersion = false;
+    }
+
+    // GET VERSION FROM GIT
+    runIf(opts.bumpVersion &#x26;&#x26; versionType === &#x27;git&#x27;, function() {
+      exec(&#x27;git describe &#x27; + opts.gitDescribeOptions, function(err, stdout) {
+        if (err) {
+          grunt.fatal(&#x27;Can not get a version number using `git describe`&#x27;);
+        }
+        gitVersion = stdout.trim();
+        next();
+      });
+    });
+
+    // BUMP ALL FILES
+    runIf(opts.bumpVersion, function() {
+      grunt.file.expand(opts.files).forEach(function(file, idx) {
+        var version = null;
+        var content = grunt.file.read(file).replace(
+          VERSION_REGEXP,
+          function(match, prefix, parsedVersion, namedPre, noNamePre, suffix) {
+            var type = versionType === &#x27;git&#x27; ? &#x27;prerelease&#x27; : versionType;
+            version = setVersion || semver.inc(
+              parsedVersion, type || &#x27;patch&#x27;, gitVersion || opts.prereleaseName
+            );
+            if (opts.metadata) {
+              if (!/^([0-9a-zA-Z-]+\.{0,1})*$/.test(opts.metadata)) {
+                grunt.fatal(
+                  &#x27;Metadata can only contain letters, numbers, dashes &#x27; +
+                  &#x27;(-) and dots (.)&#x27;
+                );
+              }
+              version += &#x27;+&#x27; + opts.metadata;
+            }
+            return prefix + version + (suffix || &#x27;&#x27;);
+          }
+        );
+
+        if (!version) {
+          grunt.fatal(&#x27;Can not find a version to bump in &#x27; + file);
+        }
+
+        var logMsg = &#x27;Version bumped to &#x27; + version +  &#x27; (in &#x27; + file + &#x27;)&#x27;;
+        if (!dryRun) {
+          grunt.file.write(file, content);
+          grunt.log.ok(logMsg);
+        } else {
+          grunt.log.ok(&#x27;bump-dry: &#x27; + logMsg); ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 </div>
 
